@@ -199,6 +199,27 @@ public class XMSupplier implements XMRecord{
         if (psBranchCd.isEmpty()) psBranchCd = poGRider.getBranchCode();
     }
        
+    public JSONObject searchSupplier(String fsValue, String fsBranchCd, boolean fbByCode){
+        String lsHeader = "ID»Name";
+        String lsColName = "sClientID»sClientNm";
+        String lsColCrit = "a.sClientID»b.sClientNm";
+        
+        String lsSQL = "SELECT " +
+                            "  a.sClientID" +
+                            ", b.sClientNm" +
+                        " FROM Supplier a" + 
+                            ", Client_Master b" +
+                        " WHERE a.sClientID = b.sClientID";  
+        
+        return showFXDialog.jsonSearch(poGRider, 
+                                            lsSQL, 
+                                            fsValue, 
+                                            lsHeader, 
+                                            lsColName, 
+                                            lsColCrit, 
+                                            fbByCode ? 0 : 1);
+    }
+    
     public boolean browseRecord(String fsValue, String fsBranchCd, boolean fbByCode){        
         JSONObject loJSON = searchSupplier(fsValue, fsBranchCd, fbByCode);
         
@@ -206,33 +227,6 @@ public class XMSupplier implements XMRecord{
             return false;
         else
             return openRecord((String) loJSON.get("sClientID"), (String) loJSON.get("sBranchCd"));
-    }
-    
-    public JSONObject searchSupplier(String fsValue, String fsBranchCd, boolean fbByCode){
-        String lsHeader = "ID»Name»Branch";
-        String lsColName = "sClientID»sClientNm»sBranchNm";
-        String lsColCrit = "a.sClientID»b.sClientNm»c.sBranchNm";
-        String lsSQL = "SELECT " +
-                            "  a.sClientID" +
-                            ", b.sClientNm" + 
-                            ", c.sBranchNm" + 
-                            ", a.sBranchCd" +
-                        " FROM Supplier a" + 
-                            ", Client_Master b" + 
-                            ", Branch c" + 
-                        " WHERE a.sClientID = b.sClientID" +
-                            " AND a.sBranchCd = c.sBranchCd" + 
-                            " AND a.sBranchCD = " + SQLUtil.toSQL(fsBranchCd);  
-        
-        JSONObject loJSON = showFXDialog.jsonSearch(poGRider, 
-                                            lsSQL, 
-                                            fsValue, 
-                                            lsHeader, 
-                                            lsColName, 
-                                            lsColCrit, 
-                                            fbByCode ? 0 : 1);
-        
-        return loJSON;
     }
     
     private void showMessage(){
