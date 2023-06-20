@@ -8,8 +8,6 @@
         <group name="RMJ POS"/>
         <group name="GCard"/>
         <group name="POS"/>
-        <group name="LP IntegSys">
-            <file>file:/D:/Guanzon/GMC%20SEG%20Folder%20-%20Java/lp-parameter-agent/src/org/rmj/cas/parameter/agent/XMSupplier.java</file>
-        </group>
+        <group name="LP IntegSys"/>
     </open-files>
 </project-private>
