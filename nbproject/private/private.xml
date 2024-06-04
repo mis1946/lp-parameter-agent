@@ -9,5 +9,9 @@
         <group name="GCard"/>
         <group name="POS"/>
         <group name="LP IntegSys"/>
+        <group name="integsys-lp">
+            <file>file:/C:/Users/Maynard/Documents/GitHub/lp-parameter-agent/src/org/rmj/lp/parameter/fx/SupplierController.java</file>
+            <file>file:/C:/Users/Maynard/Documents/GitHub/lp-parameter-agent/src/org/rmj/lp/parameter/agent/XMSupplier.java</file>
+        </group>
     </open-files>
 </project-private>
