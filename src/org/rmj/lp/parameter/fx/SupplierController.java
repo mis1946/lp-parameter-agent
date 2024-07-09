@@ -203,7 +203,12 @@ public class SupplierController implements Initializable, IFXML {
         switch (fnIndex){
             case 80:
                 if (fsResult != null && !fsResult.isEmpty()){
-                    psClientNm = (String) fsResult.get("sClientNm");
+                    if(fsResult.get("cClientTp").toString().equals("1")){
+                        psClientNm = (String) fsResult.get("sClientNm");
+                    }else {
+                        psClientNm = fsResult.get("sCompnyNm") != null ? (String) fsResult.get("sCompnyNm") :(String) fsResult.get("sClientNm") ;
+                         
+                    }
                     poRecord.setMaster(1, (String) fsResult.get("sClientID"));
                 } else {
                     ClientFX oClient = new ClientFX(); //initialize main class

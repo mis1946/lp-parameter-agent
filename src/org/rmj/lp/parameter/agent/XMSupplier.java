@@ -199,13 +199,14 @@ public class XMSupplier implements XMRecord{
     }
        
     public JSONObject searchSupplier(String fsValue, String fsBranchCd, boolean fbByCode){
-        String lsHeader = "ID»Name";
-        String lsColName = "sClientID»sClientNm";
-        String lsColCrit = "a.sClientID»b.sClientNm";
+        String lsHeader = "ID»Name»Company Name";
+        String lsColName = "sClientID»sClientNm»sCompnyNm";
+        String lsColCrit = "a.sClientID»b.sClientNm»b.sCompnyNm";
         
         String lsSQL = "SELECT " +
                             "  a.sClientID" +
                             ", b.sClientNm" +
+                            ", b.sCompnyNm" +
                         " FROM Supplier a" + 
                             ", Client_Master b" +
                         " WHERE a.sClientID = b.sClientID";  
